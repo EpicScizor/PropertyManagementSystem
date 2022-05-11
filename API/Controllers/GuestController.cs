@@ -1,4 +1,6 @@
-﻿using Domain;
+﻿using Application.Guests;
+using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistance;
@@ -7,22 +9,35 @@ namespace API.Controllers;
 
 public class GuestController : BaseApiController
 {
-    private readonly DataContext _context;
-
-    public GuestController(DataContext context)
-    {
-        _context = context;
-    }
 
     [HttpGet]
     public async Task<ActionResult<List<Guest>>> GetGuest()
     {
-        return await _context.Guests.ToListAsync();
+        return await Mediator.Send(new List.Query());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Guest>> GetLastNameGuest(Guid id)
+    public async Task<ActionResult<Guest>> GetGuestId(Guid id)
     {
-        return await _context.Guests.FindAsync(id);
+        return await Mediator.Send(new Details.Query {Id = id});
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddGuest(Guest newGuest)
+    {
+        return Ok(await Mediator.Send(new CreateGuest.Command {Guest = newGuest}));
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> EditGuest(Guid id, Guest guest)
+    {
+        guest.Id = id;
+        return Ok(await Mediator.Send(new EditGuest.Command{Guest = guest}));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteGuest(Guid id)
+    {
+        return Ok(await Mediator.Send(new DeleteGuest.Command {Id = id}));
     }
 }

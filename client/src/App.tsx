@@ -23,7 +23,7 @@ function App() {
         <ul>
           {guests.map((guests: any) => (
               <li key = {guests.id}>
-                {guests.firstname}
+                {guests.id}
               </li>
           ))}
         </ul>
