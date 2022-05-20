@@ -8,5 +8,7 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<Guest, Guest>();
+        CreateMap<Stay, Stay>();
+        CreateMap<Room, Room>();
     }
 }
