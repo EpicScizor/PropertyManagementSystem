@@ -8,7 +8,7 @@ public class Details
 { 
     public class Query : IRequest<Guest>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Extentions;
 using Application.Core;
 using Application.Guests;
 using MediatR;
@@ -32,24 +33,11 @@ namespace API
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
-            });
+            services.AddGuestAppServices(Configuration);
             services.AddDbContext<DataContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("CorsPolicy", policy =>
-                {
-                    policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
-                });
-            });
-            services.AddMediatR(typeof(List.GuestListHandler).Assembly);
-            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

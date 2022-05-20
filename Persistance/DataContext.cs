@@ -9,11 +9,13 @@ namespace Persistance
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
+            
         }
 
         public DbSet<Room> Rooms { get; set;}
         public DbSet<Guest> Guests { get; set; }
+        public DbSet<Stay> Stays { get; set; }
     }
 }

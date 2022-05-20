@@ -13,11 +13,11 @@ public class GuestController : BaseApiController
     [HttpGet]
     public async Task<ActionResult<List<Guest>>> GetGuest()
     {
-        return await Mediator.Send(new List.Query());
+        return await Mediator.Send(new GuestList.Query());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Guest>> GetGuestId(Guid id)
+    public async Task<ActionResult<Guest>> GetGuestId(int id)
     {
         return await Mediator.Send(new Details.Query {Id = id});
     }
@@ -29,14 +29,14 @@ public class GuestController : BaseApiController
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> EditGuest(Guid id, Guest guest)
+    public async Task<IActionResult> EditGuest(int id, Guest guest)
     {
-        guest.Id = id;
+        guest.GuestId = id;
         return Ok(await Mediator.Send(new EditGuest.Command{Guest = guest}));
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteGuest(Guid id)
+    public async Task<IActionResult> DeleteGuest(int id)
     {
         return Ok(await Mediator.Send(new DeleteGuest.Command {Id = id}));
     }

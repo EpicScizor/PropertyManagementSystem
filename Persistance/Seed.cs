@@ -2,11 +2,12 @@
 
 namespace Persistance;
 
-public class Seed
+/*
+ * public class Seed
 {
     public static async Task SeedData(DataContext context)
     {
-        if (context.Rooms.Any() || context.Guests.Any())
+        if (context.Rooms.Any() && context.Guests.Any() && context.Stays.Any())
             return;
 
         var rooms = new List<Room>
@@ -66,3 +67,4 @@ public class Seed
         await context.SaveChangesAsync();
     }
 }
+ */

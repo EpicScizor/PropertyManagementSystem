@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import {
@@ -17,17 +16,9 @@ function App() {
   });
   
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello, world!</p>
-        <ul>
-          {guests.map((guests: any) => (
-              <li key = {guests.id}>
-                {guests.id}
-              </li>
-          ))}
-        </ul>
-      </header>
+    <div>
+      <header>Guest Ledger</header>
+      
     </div>
   );
 }

@@ -25,7 +25,7 @@ public class EditGuest
 
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var guest = await _context.Guests.FindAsync(request.Guest.Id);
+            var guest = await _context.Guests.FindAsync(request.Guest.GuestId);
 
             _mapper.Map(request.Guest, guest);
 

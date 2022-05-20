@@ -5,7 +5,7 @@ using Persistance;
 
 namespace Application.Guests;
 
-public class List
+public class GuestList
 {
     public class Query : IRequest<List<Guest>> {}
 
@@ -18,7 +18,7 @@ public class List
         }
         public async Task<List<Guest>> Handle(Query request, CancellationToken cancellationToken)
         {
-            return await _context.Guests.ToListAsync();
+            return await _context.Guests.ToListAsync(cancellationToken);
         }
     }
 }
