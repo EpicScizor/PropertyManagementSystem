@@ -7,5 +7,4 @@ public class Guest
     public string LastName { get; set; }
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }
-    public List<Stay> Stays { get; set; }
 }

@@ -1,7 +1,9 @@
+using PropertyManagementSystem.Domain;
+
 namespace PropertyManagementSystem.Persistance;
 
-/*
- * public class Seed
+
+public class Seed
 {
     public static async Task SeedData(DataContext context)
     {
@@ -65,4 +67,3 @@ namespace PropertyManagementSystem.Persistance;
         await context.SaveChangesAsync();
     }
 }
- */
