@@ -1,5 +1,9 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PropertyManagementSystem.Extentions;
+using Microsoft.OpenApi.Models;
+using PropertyManagementSystem.Application.Core;
+using PropertyManagementSystem.Application.Guests;
+using PropertyManagementSystem.Application.Stays;
 using PropertyManagementSystem.Persistance;
 
 namespace PropertyManagementSystem;
@@ -16,7 +20,20 @@ public class Startup
     {
 
         services.AddControllers();
-        services.AddGuestAppServices(Configuration);
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
+        });
+        services.AddCors(opt =>
+        {
+            opt.AddPolicy("CorsPolicy", policy =>
+            {
+                policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+            });
+        });
+        services.AddMediatR(typeof(GuestList.GuestListHandler).Assembly);
+        services.AddMediatR(typeof(StayList.StayListHandler).Assembly);
+        services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         services.AddDbContext<DataContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
     }

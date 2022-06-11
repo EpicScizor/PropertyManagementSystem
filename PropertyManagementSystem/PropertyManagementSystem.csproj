@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Application\Rooms" />
+    <Folder Include="Extentions" />
   </ItemGroup>
 
 </Project>
