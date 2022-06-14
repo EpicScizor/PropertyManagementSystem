@@ -5,7 +5,8 @@ namespace PropertyManagementSystem.Persistance;
 
 public class Seed
 {
-    public static async Task SeedData(DataContext context)
+   /*
+    *  public static async Task SeedData(DataContext context)
     {
         if (context.Rooms.Any() && context.Guests.Any() && context.Stays.Any())
             return;
@@ -66,4 +67,5 @@ public class Seed
         await context.Guests.AddRangeAsync(guests);
         await context.SaveChangesAsync();
     }
+    */
 }

@@ -18,7 +18,7 @@ public class RoomController : BaseApiController
     [HttpGet]
     public async Task<ActionResult<List<Room>>> GetRooms()
     {
-        return await _context.Rooms.ToListAsync();
+        return await Mediator.Send(new RoomList.Query());
     }
 
     [HttpGet("{id}")]
@@ -27,4 +27,16 @@ public class RoomController : BaseApiController
         return await Mediator.Send(new RoomDetails.Query {Id = id});
     }
 
+    [HttpGet("{occupied}")]
+    public async Task<ActionResult<List<Room>>> ShowRoomStatus(bool occupied)
+
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPut("{occupied}")]
+    public async Task<ActionResult<Room>> UpdateRoomStatus(bool occupied)
+    {
+        throw new NotImplementedException();
+    }
 }
