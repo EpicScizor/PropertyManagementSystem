@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PropertyManagementSystem.Application.Rooms;
 using PropertyManagementSystem.Domain;
 using PropertyManagementSystem.Persistance;
 
@@ -21,9 +22,9 @@ public class RoomController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Room>> GetSpecificRoom(Guid id)
+    public async Task<ActionResult<Room>> GetSpecificRoom(int id)
     {
-        return await _context.Rooms.FindAsync(id);
+        return await Mediator.Send(new RoomDetails.Query {Id = id});
     }
 
 }

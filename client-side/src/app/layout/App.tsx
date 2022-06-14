@@ -1,9 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './style.css';
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-
 
 function App() {
   const [guests, setGuests] = useState([]); 
@@ -21,7 +20,7 @@ function App() {
       <ul>
           {guests.map((guest: any) => (
               <li key={guest.id}>
-                  {guest.firstName}
+                  {guest.lastName}, {guest.firstName}
               </li>
           ))}
       </ul>
